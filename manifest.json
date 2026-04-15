@@ -1,0 +1,25 @@
+{
+  "name": "Bryan's Property Analyzer",
+  "short_name": "Property Analyzer",
+  "description": "Investor-grade AI property analysis tool",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#02060c",
+  "theme_color": "#02060c",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
