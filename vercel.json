@@ -1,7 +1,20 @@
+Click the pencil icon, select all the text, replace it with this, then commit:
+
+```json
 {
-  "functions": {
-    "api/analyze.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  "version": 2,
+  "builds": [
+    { "src": "api/analyze.js", "use": "@vercel/node" },
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "*.png", "use": "@vercel/static" },
+    { "src": "*.json", "use": "@vercel/static" },
+    { "src": "icons/*", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/analyze", "dest": "/api/analyze.js" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
 }
+```
