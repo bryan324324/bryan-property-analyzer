@@ -1,7 +1,6 @@
-const CACHE_NAME = "property-analyzer-v2";
+const CACHE_NAME = "property-analyzer-v3";
 
 const STATIC_ASSETS = [
-  "./",
   "./index.html",
   "./styles.css",
   "./app.js",
@@ -26,16 +25,16 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
-  if (url.hostname === "api.anthropic.com") { event.respondWith(fetch(event.request)); return; }
-  if (url.hostname.includes("fonts.googleapis.com") || url.hostname.includes("fonts.gstatic.com")) {
-    event.respondWith(fetch(event.request).catch(() => new Response(""))); return;
-  }
+
+  if (url.hostname !== self.location.hostname) return;
+
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached;
       return fetch(event.request).then((res) => {
-        if (event.request.method === "GET" && res.ok && url.origin === self.location.origin) {
-          caches.open(CACHE_NAME).then((c) => c.put(event.request, res.clone()));
+        if (event.request.method === "GET" && res.ok) {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
         }
         return res;
       }).catch(() => {
