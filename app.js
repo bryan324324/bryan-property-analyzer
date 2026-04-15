@@ -26,15 +26,6 @@ function dismissInstall() {
   document.getElementById("install-banner").classList.add("hidden");
 }
 
-// ─── SERVICE WORKER ───────────────────────────────────────────────────────────
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("service-worker.js")
-    .then(() => console.log("[SW] Registered"))
-    .catch((err) => console.warn("[SW] Registration failed:", err));
-}
-
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 
 function showError(msg) {
@@ -146,6 +137,7 @@ RED FLAGS / RISKS
 
 RECOMMENDED NEXT STEPS
 - Top 3 action items for this deal`,
+
     "Comps Only": `Produce a Comparable Sales Analysis:
 
 COMP SUMMARY
@@ -211,6 +203,7 @@ RISK FACTORS
 
 GO / NO-GO
 - Clear recommendation`,
+
     "Rental Analysis": `Produce a Rental Property Analysis:
 
 RENTAL MARKET SNAPSHOT
@@ -248,9 +241,6 @@ HOLD vs SELL RECOMMENDATION
   return `${baseContext}\n\n${propertyInfo}\n\n${modePrompts[mode] || modePrompts["Full Report"]}`;
 }
 
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
-const ANTHROPIC_API_KEY = "";
-
 // ─── MAIN RUN ─────────────────────────────────────────────────────────────────
 
 async function run() {
@@ -273,14 +263,9 @@ async function run() {
   const startTime = Date.now();
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("/api/analyze", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-direct-browser-access": "true",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 1000,
