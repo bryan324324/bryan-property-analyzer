@@ -249,7 +249,7 @@ HOLD vs SELL RECOMMENDATION
 }
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
-const ANTHROPIC_API_KEY = "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";
+const ANTHROPIC_API_KEY = "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";
 
 // ─── MAIN RUN ─────────────────────────────────────────────────────────────────
 
