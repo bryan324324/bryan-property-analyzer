@@ -1,6 +1,3 @@
-Click the pencil icon, select all the text, replace it with this, then commit:
-
-```json
 {
   "version": 2,
   "builds": [
@@ -17,4 +14,3 @@ Click the pencil icon, select all the text, replace it with this, then commit:
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
-```
