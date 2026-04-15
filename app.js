@@ -267,7 +267,7 @@ async function run() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "claude-sonnet-4-5",
         max_tokens: 1000,
         system: "You are a senior real estate analyst and licensed mortgage professional. You produce clear, direct, investor-grade property analysis. No filler. No disclaimers. Format output with ALL-CAPS section headers.",
         messages: [{ role: "user", content: prompt }],
