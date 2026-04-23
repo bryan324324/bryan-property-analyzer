@@ -1,3 +1,4 @@
+```javascript
 // ─── INSTALL PROMPT ───────────────────────────────────────────────────────────
 
 let deferredPrompt = null;
@@ -386,3 +387,4 @@ async function run() {
     setLoading(false);
   }
 }
+```
